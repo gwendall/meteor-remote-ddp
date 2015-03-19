@@ -1,11 +1,12 @@
 RemoteDDP = function(url) {
-  Meteor.connection = DDP.connect(url);
-  Accounts.connection = Meteor.connection;
-  Meteor.users = new Mongo.Collection("users", { connection: Meteor.connection });
+  var connection = DDP.connect(url);
+  Meteor.connection = connection;
+  Accounts.connection = connection;
+  Meteor.users = new Mongo.Collection("users", { connection: connection });
   var methods = ["subscribe", "call", "apply", "methods", "status", "reconnect", "disconnect", "onReconnect"];
   methods.forEach(function(method) {
     Meteor[method] = function() {
-      return Meteor.connection[method].apply(Meteor.connection, arguments);
+      return connection[method].apply(connection, arguments);
     };
   });
 }
