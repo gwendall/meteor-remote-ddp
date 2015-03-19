@@ -8,8 +8,8 @@ Package.describe({
 Package.onUse(function (api, where) {
 
   api.use([
-    "mongo",
-    "accounts-base"
+    "mongo@1.1.0",
+    "accounts-base@1.2.0"
   ], "client");
 
   api.addFiles([
