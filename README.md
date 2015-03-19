@@ -22,4 +22,5 @@ RemoteDDP("http://localhost:5000");
 
 TO DO
 -----  
-- Implement patch for OAUTH login (right now, accounts-facebook, accounts-twitter, etc point to client's server by default)
+- Implement patch for OAUTH login (right now, accounts-facebook, accounts-twitter, etc point to client's server by default)  
+- Maybe monkey-patch Mongo.Collection so that it automatically picks the new Meteor.connection
