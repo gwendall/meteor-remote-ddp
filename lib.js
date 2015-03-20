@@ -8,7 +8,6 @@ RemoteDDP = function(url) {
 
   // Patch methods
   var methods = ["subscribe", "call", "apply", "methods", "status", "reconnect", "disconnect", "onReconnect"];
-  // methods are not reactive anymore...
   methods.forEach(function(method) {
     Meteor[method] = function() {
       return connection[method].apply(connection, arguments);
