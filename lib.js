@@ -16,6 +16,9 @@ RemoteDDP = function(url) {
   });
 
   // Reset the users collection
-  Meteor.users = new Mongo.Collection("users");
+  Meteor.users = new Mongo.Collection("users", { connection: connection });
+
+  // Return the connection
+  return connection;
 
 }
