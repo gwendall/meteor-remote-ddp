@@ -20,7 +20,12 @@ RemoteDDP("http://localhost:5000");
 // You can now call any Meteor method (call, subscribe, etc.) and it will all point to this server
 ```
 
-TO DO
+Notes
+-----  
+- Does not work in Cordova. To access a different server, use the --mobile-server flag instead.
+- Inspired by @jamgold's [solution](https://github.com/meteor/meteor/issues/3852#issuecomment-78699162).
+
+To do
 -----  
 - Implement patch for OAUTH login (right now, accounts-facebook, accounts-twitter, etc point to client's server by default)  
 - Maybe monkey-patch Mongo.Collection so that it automatically picks the new Meteor.connection

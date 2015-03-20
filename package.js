@@ -9,6 +9,7 @@ Package.onUse(function (api, where) {
 
   api.use([
     "mongo@1.1.0",
+    "underscore@1.0.3",
     "accounts-base@1.2.0"
   ], "client");
 
