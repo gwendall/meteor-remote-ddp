@@ -1,31 +1,55 @@
 Meteor Remote DDP
 =================
 
-When building apps with decoupled client-code and server-code (say mobile apps, for example), your client tries to connect to its own DDP server by default. And performs all the Meteor methods (Meteor.call, Meteor.subscribe, etc.) to this endpoint.  
-This package just allows you to specify a remote DDP server for all of that.
+When building apps with decoupled client-code and server-code (say mobile apps, for example), your client connects via DDP to its own server by default. 
+
+This package allows you to specify a remote DDP server for Accounts, subscriptions and Meteor methods.
+
+This package is quite brittle. It relies heavily on private APIs and monkey patching.
 
 Installation
 ------------
 
-``` sh
-meteor add gwendall:remote-ddp
+```
+git clone https://github.com/BudgieInWA/meteor-remote-ddp.git packages/meteor-ddp
+meteor add budgie:remote-ddp
 ```
 
-How-to
-----------
+If you use accounts-base, or any dependant package, you must edit `.meteor/packages` to move `budgie:remote-ddp` above any such packages.
 
-**RemoteDDP(url)**  
+Usage
+-----
+
+Add the remote to your settings JSON file:
+
+``` json
+{
+  "public": {
+    "remoteDdpUrl": "http://localhost:5000"
+  }
+}
+```
+
+In your client code, before doing anything that uses DDP, initialise RemoteDDP:
+
 ``` javascript
-RemoteDDP("http://localhost:5000");
-// You can now call any Meteor method (call, subscribe, etc.) and it will all point to this server
+RemoteDDP.monkeyPatch();
+```
+
+Launch Meteor using your settings file:
+
+``` sh
+meteor --settings settings.json
 ```
 
 Notes
 -----  
-- Does not work in Cordova. To access a different server, use the --mobile-server flag instead.
-- Inspired by @jamgold's [solution](https://github.com/meteor/meteor/issues/3852#issuecomment-78699162).
 
-To do
+- Based on [gwendall:remote-ddp](https://github.com/gwendall/meteor-remote-ddp).
+- Does not work in Cordova. To access a different server, use the --mobile-server flag instead.
+- I don't know about Mongo.Collection support.
+
+To Do
 -----  
-- Implement patch for OAUTH login (right now, accounts-facebook, accounts-twitter, etc point to client's server by default)  
-- Maybe monkey-patch Mongo.Collection so that it automatically picks the new Meteor.connection
+
+- Publish to atmosphere?
