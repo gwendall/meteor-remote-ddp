@@ -1,8 +1,8 @@
 Package.describe({
-  name: "budgie:remote-ddp",
+  name: "gwendall:remote-ddp",
   summary: "Make your client seamlessly connect to a different server",
-  git: "https://github.com/budgie/meteor-remote-ddp.git",
-  version: "0.1.0",
+  git: "https://github.com/gwendall/meteor-remote-ddp.git",
+  version: "0.2.0",
 });
 
 Package.onUse(function(api) {
